@@ -6,6 +6,7 @@ import csv
 def main():
 
     userList = getUserList()
+    print(userList)
 
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
@@ -27,7 +28,7 @@ def getUserList():
     try:
         with open("users.csv", 'r', newline = '') as file:
             reader = csv.DictReader(file)
-            for (row in reader):
+            for row in reader:
                 userList.append(row)
     except FileNotFoundError:
         with open("users.csv", 'w', newline = '') as file:
@@ -36,3 +37,5 @@ def getUserList():
             writer.writeheader()
 
     return userList
+
+main()
