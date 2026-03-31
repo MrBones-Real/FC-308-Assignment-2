@@ -25,17 +25,44 @@ def main():
 #(Python Documentation, 2026)
 def getUserList():
     userList = []
+    #Trying to open and getting data from users.csv
     try:
         with open("users.csv", 'r', newline = '') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 userList.append(row)
+    #Creating the file if it doesn't exist
     except FileNotFoundError:
         with open("users.csv", 'w', newline = '') as file:
-            fieldnames = ["username", "password", "mathLV", "mathHScore","scienceLV", "scienceHScore", "historyLV", "historyHScore", "artLV", "artHScore", "computingLV", "computingHScore"]
+            fieldnames = ["username", "password", "mathLV", "mathHScore","scienceLV",
+                          "scienceHScore", "historyLV", "historyHScore", "artLV",
+                          "artHScore", "computingLV", "computingHScore"]
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
 
     return userList
+
+def signUp(users):
+    while True:
+        username = input("username: ")
+        
+        if username in users:
+            print("\nThat user already exists!\n")
+        else:
+            break
+
+    while True:
+        password = input("password: ")
+        confirmPassword = input("confirm password: ")
+
+        if not password == confirmPassword:
+            print("The password does not coincide")
+        else:
+            break
+
+    newUser = ["username":username, "password":password, "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0', "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0', "computingLV":'1', "computingHighScore":'0']
+    users.append(newUser)
+    #updateUserList()
+    return users
 
 main()
