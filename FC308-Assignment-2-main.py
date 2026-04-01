@@ -56,6 +56,12 @@ def isExistingUser(users, name):
             return True
     else:
         return False
+
+#This function returns a user based on a username given
+def getUser(users, name):
+    for user in users:
+        if name == user["username"]:
+            return user
     
 #This function will allow the user to create a new account
 def signUp(users):
@@ -88,5 +94,21 @@ def signUp(users):
 
 #This function will allow user to log in into their account
 def logIn(users):
-    pass
+    #getting a username and making sure it exists in userlist
+    while True:
+        username = input("username: ")
+        if isExistingUser(users, username):
+            currentUser = getUser(users, username)
+            break
+        else:
+            print("\nThat user doesn't exist!\n")
+    #Asking the user for their password
+    while True:
+        password = input("password: ")
+
+        if password == currentUser["password"]:
+            print("You're Logged In! :)")
+            break
+        else:
+            print("Wrong password :(")
 main()
