@@ -15,7 +15,7 @@ def main():
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
         if (hasAccount == 'yes' or hasAccount == 'y'):
-            #logIn()
+            logIn(UserList)
             print("LogIn!")
         
         elif (hasAccount == 'no' or hasAccount == 'n'):
@@ -49,20 +49,24 @@ def updateUserList(users):
         writer.writeheader()
         writer.writerows(users)
 
+#This function checks if a username is already present in the user list
+def isExistingUser(users, name):
+    for user in users:
+        if name == user["username"]:
+            return True
+    else:
+        return False
+    
 #This function will allow the user to create a new account
 def signUp(users):
     #getting a user name that doesn't already exist
-    isValidUsername = False
-    
-    while not isValidUsername:
+    while True:
         username = input("username: ")
 
-        for user in users:
-            if username == user["username"]:
-                print("\nThat user already exists!\n")
-                break
+        if isExistingUser(users, username):
+            print("\nThat user already exists!\n")
         else:
-            isValidUsername = True
+            break
     #getting a password and getting the user to confirm it
     while True:
         password = input("password: ")
@@ -82,4 +86,7 @@ def signUp(users):
     updateUserList(users)
     return users
 
+#This function will allow user to log in into their account
+def logIn(users):
+    pass
 main()
