@@ -2,10 +2,13 @@
 
 import csv
 
+headers = ["index", "username", "password", "mathLV", "mathHScore",
+           "scienceLV","scienceHScore", "historyLV", "historyHScore",
+           "artLV","artHScore", "computingLV", "computingHScore"]
+
 #(W3Schools, 2026)
 #(Python Documentation, 2026)
 def main():
-
     userList = getUserList()
     print(userList)
     print(len(userList))
@@ -36,15 +39,21 @@ def getUserList():
     #Creating the file if it doesn't exist
     except FileNotFoundError:
         with open("users.csv", 'w', newline = '') as file:
-            fieldnames = ["index", "username", "password", "mathLV", "mathHScore","scienceLV",
-                          "scienceHScore", "historyLV", "historyHScore", "artLV",
-                          "artHScore", "computingLV", "computingHScore"]
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer = csv.DictWriter(file, fieldnames=headers)
             writer.writeheader()
 
     return userList
 
+#This function will update the users.csv file with the new contact list
+def updateUserList(users):
+    with open("users.csv", 'w', newline = '') as file:
+        writer = csv.DictWriter(fiel, fieldnames= headers)
+        writer.writeheader()
+        writer.writerows(users)
+
+#This function will allow the user to create a new account
 def signUp(users):
+    #getting a user name that doesn't already exist
     while True:
         username = input("username: ")
         
@@ -52,7 +61,7 @@ def signUp(users):
             print("\nThat user already exists!\n")
         else:
             break
-
+    #getting a password and getting the user to confirm it
     while True:
         password = input("password: ")
         confirmPassword = input("confirm password: ")
@@ -61,10 +70,10 @@ def signUp(users):
             print("The password does not coincide")
         else:
             break
-
-    newUser = {"index":len(newUser)-1,"username":username, "password":password, "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0', "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0', "computingLV":'1', "computingHighScore":'0'}
+    #creating the new user and adding it to the list
+    newUser = {"index":len(users)-1,"username":username, "password":password, "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0', "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0', "computingLV":'1', "computingHighScore":'0'}
     users.append(newUser)
-    #updateUserList()
+    updateUserList(users)
     return users
 
 main()
