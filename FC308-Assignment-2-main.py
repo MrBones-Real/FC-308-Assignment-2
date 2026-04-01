@@ -15,8 +15,7 @@ def main():
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
         if (hasAccount == 'yes' or hasAccount == 'y'):
-            logIn(UserList)
-            print("LogIn!")
+            logIn(userList)
         
         elif (hasAccount == 'no' or hasAccount == 'n'):
             userList = signUp(userList)
@@ -107,8 +106,8 @@ def logIn(users):
         password = input("password: ")
 
         if password == currentUser["password"]:
-            print("You're Logged In! :)")
+            print("\nYou're Logged In! :)\n")
             break
         else:
-            print("Wrong password :(")
+            print("\nWrong password :(\n")
 main()
