@@ -2,6 +2,7 @@
 
 import csv
 
+#intializing headers that are going to be used when writing into users.csv
 headers = ["index", "username", "password", "mathLV", "mathHScore",
            "scienceLV","scienceHScore", "historyLV", "historyHScore",
            "artLV","artHScore", "computingLV", "computingHScore"]
@@ -10,9 +11,7 @@ headers = ["index", "username", "password", "mathLV", "mathHScore",
 #(Python Documentation, 2026)
 def main():
     userList = getUserList()
-    print(userList)
-    print(len(userList))
-
+    
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
         if (hasAccount == 'yes' or hasAccount == 'y'):
@@ -20,9 +19,8 @@ def main():
             print("LogIn!")
         
         elif (hasAccount == 'no' or hasAccount == 'n'):
-            #signUp()
-            print("SignUp!")
-        
+            userList = signUp(userList)
+            
         else:
             print("\nThat is not a valid input!\n")
 
@@ -47,31 +45,39 @@ def getUserList():
 #This function will update the users.csv file with the new contact list
 def updateUserList(users):
     with open("users.csv", 'w', newline = '') as file:
-        writer = csv.DictWriter(fiel, fieldnames= headers)
+        writer = csv.DictWriter(file, fieldnames= headers)
         writer.writeheader()
         writer.writerows(users)
 
 #This function will allow the user to create a new account
 def signUp(users):
     #getting a user name that doesn't already exist
-    while True:
+    isValidUsername = False
+    
+    while not isValidUsername:
         username = input("username: ")
-        
-        if username in users:
-            print("\nThat user already exists!\n")
+
+        for user in users:
+            if username == user["username"]:
+                print("\nThat user already exists!\n")
+                break
         else:
-            break
+            isValidUsername = True
     #getting a password and getting the user to confirm it
     while True:
         password = input("password: ")
         confirmPassword = input("confirm password: ")
 
         if not password == confirmPassword:
-            print("The password does not coincide")
+            print("\nThe password does not coincide\n")
         else:
             break
     #creating the new user and adding it to the list
-    newUser = {"index":len(users)-1,"username":username, "password":password, "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0', "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0', "computingLV":'1', "computingHighScore":'0'}
+    newUser = {"index":len(users),"username":username, "password":password,
+               "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0',
+               "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0',
+               "computingLV":'1', "computingHScore":'0'}
+    
     users.append(newUser)
     updateUserList(users)
     return users
