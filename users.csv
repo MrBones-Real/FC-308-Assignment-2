@@ -1,1 +1,2 @@
-username,password,mathLV,mathHScore,scienceLV,scienceHScore,historyLV,historyHScore,artLV,artHScore,computingLV,computingHScore
+index,username,password,mathLV,mathHScore,scienceLV,scienceHScore,historyLV,historyHScore,artLV,artHScore,computingLV,computingHScore
+0,Ariel,1234,1,0,1,0,1,0,1,0,1,0

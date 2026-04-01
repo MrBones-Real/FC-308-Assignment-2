@@ -3,10 +3,12 @@
 import csv
 
 #(W3Schools, 2026)
+#(Python Documentation, 2026)
 def main():
 
     userList = getUserList()
     print(userList)
+    print(len(userList))
 
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
@@ -34,7 +36,7 @@ def getUserList():
     #Creating the file if it doesn't exist
     except FileNotFoundError:
         with open("users.csv", 'w', newline = '') as file:
-            fieldnames = ["username", "password", "mathLV", "mathHScore","scienceLV",
+            fieldnames = ["index", "username", "password", "mathLV", "mathHScore","scienceLV",
                           "scienceHScore", "historyLV", "historyHScore", "artLV",
                           "artHScore", "computingLV", "computingHScore"]
             writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -60,7 +62,7 @@ def signUp(users):
         else:
             break
 
-    newUser = ["username":username, "password":password, "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0', "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0', "computingLV":'1', "computingHighScore":'0']
+    newUser = {"index":len(newUser)-1,"username":username, "password":password, "mathLV":'1', "mathHScore":'0', "scienceLV":'1', "scienceHScore":'0', "historyLV":'1', "historyHScore":'0', "artLV":'1', "artHScore":'0', "computingLV":'1', "computingHighScore":'0'}
     users.append(newUser)
     #updateUserList()
     return users
