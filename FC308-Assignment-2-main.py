@@ -15,13 +15,17 @@ def main():
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
         if (hasAccount == 'yes' or hasAccount == 'y'):
-            logIn(userList)
+            currentUser = logIn(userList)
+            break
         
         elif (hasAccount == 'no' or hasAccount == 'n'):
-            userList = signUp(userList)
+            userList, currentUser = signUp(userList)
+            break
             
         else:
             print("\nThat is not a valid input!\n")
+
+    print(f"Welcome {currentUser['username']}!")
 
 #Function that is going to get userList from users.csv or create the file if it doesn't exist
 #(Python Documentation, 2026)
@@ -64,6 +68,7 @@ def getUser(users, name):
     
 #This function will allow the user to create a new account
 def signUp(users):
+    print("\nSign-Up\n")
     #getting a user name that doesn't already exist
     while True:
         username = input("username: ")
@@ -89,10 +94,12 @@ def signUp(users):
     
     users.append(newUser)
     updateUserList(users)
-    return users
+    print("Account created succesfully!")
+    return users, newUser
 
 #This function will allow user to log in into their account
 def logIn(users):
+    print("\nLog-In\n")
     #getting a username and making sure it exists in userlist
     while True:
         username = input("username: ")
@@ -106,8 +113,9 @@ def logIn(users):
         password = input("password: ")
 
         if password == currentUser["password"]:
-            print("\nYou're Logged In! :)\n")
-            break
+            print("\nLog In Successfull! :)\n")
+            return currentUser
         else:
             print("\nWrong password :(\n")
+            
 main()
