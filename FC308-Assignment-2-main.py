@@ -9,6 +9,10 @@ headers = ["index", "username", "password", "mathLV", "mathHScore",
 #intializing main menu options
 mainMenu = ["Vocabulary builder","Play Game",
             "Check Stats","Check Ranking","Reset Progress","Exit"]
+#initializing subject selection menu
+subjectMenu = ["What subject do you want to practice?","Math","Science","History","Art","Computer Science"]
+#initializing level selection menu
+levelMenu = ["What level do you want to play?","1","2","3"]
 
 #(W3Schools, 2026)
 #(Python Documentation, 2026)
@@ -36,7 +40,7 @@ def main():
         print(selection)
         
         if selection == '1' or selection == "play game":
-            print(" \nPlaying Game!\n")
+            playGame()
         elif selection == '2' or selection == "check stats":
             print("\nChecking Stats!\n")
         elif selection == '3' or selection == "check ranking":
@@ -170,6 +174,52 @@ def printMenu(menu):
         i += 1
     print()
 
+#This function will allow the user to choose a subject, level and game to play
+def playGame(user):
+    #Allowing the user to select their subject
+    while True:
+        printMenu(subjectMenu)
+
+        selection = input("Type number or name: ")
+        selection = selection.lower().stripped()
+
+        if selection == '1' or selection == "math":
+            subject = 'math'
+            break
+        elif selection == '2' or selection == "science":
+            subject = 'science'
+            break
+        elif selection == '3' or selection == "history":
+            subject = 'history'
+            break
+        elif selection == '4' or selection == "art":
+            subject = 'art'
+            break
+        elif selection == '5' or selection == "computer science":
+            subject = 'computer science'
+            break
+        else:
+            print("\nThat is not a valid input! >:(\n")
+    #Allowing the user to choose their level
+    while True:
+        printMenu(levelMenu)
+
+        selection = input("Type number or name: ")
+        selection = selection.lower().stripped()
+
+        if selection == '1':
+            level = '1'
+            break
+        elif selection == '2':
+            level = '2'
+            break
+        elif selection == '3':
+            level = '3'
+            break
+        else.
+            print("\nThat is not a valid input! >:(\n")
+
+    playWordGuess(subject, level)
 #This function plays the word guess game for the user
 def playWordGuess(subject, level):
     wordList = getWordList()
