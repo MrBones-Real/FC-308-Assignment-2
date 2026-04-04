@@ -1,2 +1,151 @@
-word,definition,subject,level
-addition,process of adding two or more items together,math,1
+word,subject,level,definition
+Arithmetic,math,1,elementary branch of mathematics that deals with numerical operations like addition subtraction multiplication & division.
+Addition,math,1,mathematical process of summing two or more numbers together.
+Subtraction,math,1,mathematical process of taking one number away from another.
+Division,math,1,mathematical process of splitting a number into equal parts based on another number.
+Multiplication,math,1,mathematical process of summing the same number multiple times.
+Square root,math,1,mathematical process that finds a number that multiplied by itself equals to the given number.
+Squaring,math,1,mathematical process that involves multiplying a number by itself.
+Mean,math,1,an average value of a data set.
+Median,math,1,the middle value in an ordered dataset.
+Mode,math,1,the value that appears most frequently in a data set.
+Algebra,math,2,branch of mathematics that generalizes arithmetic operations using symbols.
+Quadratic,math,2,something that pertains to squares to the operation of squaring.
+Graph,math,2,a diagram showing the relation between variable quantities typically of two variables each measured along one of a pair of axes at right angles.
+Polynominal,math,2,a mathematical expression that contains two or more algebraic terms that are added subtracted or multiplied.
+Equation,math,2,a mathematical statement that two expressions are equal.
+Fraction,math,2,the quotient of two rational numbers.
+Factorization,math,2,the resolution of an entity into factors such that when multiplied together they give the original entity.
+Parabola,math,2,the graph of a quadratic function: a symmetrical approximately U-shaped curve such as the path of an object that is thrown into the air and falls some distance away.
+Ellipse,math,2,a closed plane curve resulting from the intersection of a circular cone and a plane cutting completely through it.
+Variable,math,2,a quantity that can assume any of a set of values.
+Trigonometry,math,3,branch of mathematics that studies the relationships between the side lengths and angles of triangles particularly right-angled triangles.
+Infinity,math,3,a number that has an ever increasing value with no end.
+Cube,math,3,a hexahedron with six equal squares as faces.
+Permutation,math,3,the act of changing the arrangement of a given number of elements.
+Irrational,math,3,a number which is real but not expressible as the quotient of two integers.
+Hypotenuse,math,3,the side of a right triangle opposite the right angle.
+Tangent,math,3,a straight line or plane that touches a curve or curved surface at only one point.
+Polygon,math,3,a closed plane figure bounded by straight sides.
+Vertex,math,3,the point of intersection of lines or the point opposite the base of a figure; the highest point.
+Scalene,math,3,a triangle having three sides of different lengths.
+Hypothesis,science,1,idea or explanation that you then test through study and experimentation.
+Photosynthesis,science,1,the process in which plants absorb sunlight and turn that energy into food.
+Astronomy,science,1,the branch of science that deals with celestial objects space and the physical universe as a whole.
+Oxygen,science,1,one of the most abundant naturally occuring elements on Earth with an Atomic Number 8.
+Electron,science,1,the smallest of the particles that make up an atom and they carry a negative charge.
+Chlorophyll,science,1,green pigments found in photosynthetic organisms.
+Ultraviolet,science,1,having or employing wavelengths shorter than light but longer than X-rays lying outside the visible spectrum at its violet end.
+Kinetic Energy,science,1,the mechanical energy that a body has by virtue of its motion.
+Potential Energy,science,1,the mechanical energy that a body has by virtue of its position; stored energy.
+Mass,science,1,the property of a body that causes it to have weight in a gravitational field.
+Mohs,science,2,1-10 qualitative ordinal scale ranking minerals by scratch resistance.
+Isotonic,science,2,the state in which blood cells are when there is a perfect solution of water in the cell.
+Anaerobic,science,2,a type of exercise that involves little cardiovascular activity which in turn increases muscle movement with less oxygen flow and forces other energy sources to be used such as glucose.
+Ph Scale,science,2,a logarithmic tool ranging from 0 to 14 that measures the acidity or alkalinity of an aqueous solution by determining the concentration of hydrogen ions.
+Mitosis,science,2,the process by which a cell naturally reproduces via splitting itself into two identitcal cells.
+Chromosome,science,2,threadlike structure of nucleic acids and protein found in the nucleus of most living cells carrying genetic information in the form of genes.
+Inertia,science,2,the tendency of a body to maintain its state of rest or uniform motion unless acted upon by an external force.
+Genus,science,2,taxonomic group containing one or more species.
+Vertebrate,science,2,animals having a bony or cartilaginous skeleton with a segmented spinal column and a large brain enclosed in a skull or cranium.
+Amino Acid,science,2,organic molecules composed of carbon hydrogen oxygen nitrogen and sometimes sulfur which serve as the essential building blocks of proteins.
+Astatine,science,3,rarest naturally-ocurring element found on Earth with an Atomic Number 85.
+Einsteinium,science,3,a highly radioactive synthetic silvery-white metal in the actinide series discovered in 1952 from hydrogen bomb debris. Named after famous German Theoretical Physicist.
+Mitochondria,science,3,oftentimes referred to as "The Powerhouse of the Cell".
+Igneous,science,3,a rock is one that forms through intense fiery heat - usually in a volcano.
+Nebula,science,3,an immense cloud of gas (mainly hydrogen) and dust in interstellar space.
+Aquifer,science,3,an underground natural water supply.
+Osmosis,science,3,diffusion of molecules through a semipermeable membrane from a place of higher concentration to a place of lower concentration until the concentration on both sides is equal.
+Meiosis,science,3,cell division that produces reproductive cells in sexually reproducing organisms; the nucleus divides into four nuclei each containing half the chromosome number (leading to gametes in animals and spores in plants).
+Lysosome,science,3,an organelle that contains digestive enzymes and is wrapped in a membrane.
+Cytoplasm,science,3,the protoplasm of a cell excluding the nucleus; is full of proteins that control cell metabolism.
+Century,history,1,a period of 100 years.
+Dictator,history,1,a ruler who is unrestrained by law who rules with absolute authority.
+Decade,history,1,a period of 10 years.
+Propaganda,history,1,information that is spread for the purpose of promoting some cause.
+Tariff,history,1,a government tax on imports or exports.
+Capitalism,history,1,an economic system featuring the private ownership of business wealth and the free and unfettered operation of trade markets.
+Inflation,history,1,a general and progressive increase in prices.
+Doctrine,history,1,a belief (or system of beliefs) accepted as authoritative by some group or school.
+Monarchy,history,1,an autocracy governed by a ruler (such as a king or queen) who usually inherits the authority.
+Communism,history,1,an economic theory favoring a classless society and the abolition of private property.
+Hadrian,history,2,name of a Roman emperor famous for traveling building a wall and promoting the arts.
+Normandy,history,2,historic site of the D-Day landings on June 6 1944.
+Hemmingway,history,2,american novelist and journalist who amongst many things had four wives and a collection of six-toed cats.
+Henry VIII,history,2,king of England from 22 April 1509 until 1547. Famously severed England and Ireland from the Roman Catholic Church and established the monarch as Supreme Head of the Church of England and had a total of six wives. Two marriages were annulled and two endeed in execution.
+Hiroshima,history,2,one of two Japanese cities targeted by the atomic bombs dropped by the United States at the end of World War II.
+Franz Ferdinand,history,2,the heir to the Austro-Hungarian throne whose assassination on June 28 1914 in Sarajevo by Gavrilo Princip triggered the July Crisis directly leading to World War I.
+Rasputin,history,2,russian mystic and faith healer. He is best known for having befriended the imperial family of Nicholas II the last Emperor of Russia through whom he gained considerable influence in the final years of the Russian Empire.
+Industrial Revolution,history,2,beginning in 1760 this was a transitional period of the global economy toward more widespread efficient and stable manufacturing processes succeeding the Second Agricultural Revolution.
+Tudor Period,history,2,occurred between 1485 and 1603 in Endlang and Wales including the Elizabethan era.
+Superpower,history,2,a state powerful enough to influence events throughout the world.
+Fundamentalism,history,3,the interpretation of every word in the sacred texts as literal truth.
+Colonization,history,3,the act of setting up a settlement and taking control over an area away from one's origin country.
+Federalism,history,3,a system of government in which entities such as states or provinces share power with a national government.
+Empiricism,history,3,the doctrine that knowledge derives from experience.
+Iron Curtain,history,3,an impenetrable barrier to communication or information especially as imposed by rigid censorship and secrecy used by Winston Churchill in 1946 to describe the demarcation between democratic and communist countries.
+Isolationism,history,3,a policy of nonparticipation in international economic and political relations.
+Totalitarianism,history,3,a form of government in which the ruler is an absolute dictator.
+Geopolitics,history,3,the study of how things like a country's land climate and natural resources all affect its government and economy.
+Annexation,history,3,the formal act of acquiring something (especially territory) by conquest or occupation.
+Manifest Destiny,history,3,a policy of imperialism rationalized as inevitable (as if granted by God).
+Surrealism,art,1,art and cultural movement that developed in Europe in the aftermath of World War I in which often depicted illogical or dreamlike scenes and ideas.
+Acrylic,art,1,water-based fast-drying paint widely used by artists since the 1960s.
+Stop motion,art,1,a form of animation that is made without computer generation typically created by moving objects or pieces slowly by hand and taking photos after each slight shift to create the illusion of movement.
+Opacity,art,1,a spectrum of how much light passes through the surface an object. The higher the opacity the thicker the surface of the object which means less light passes through it. Less opacity means more light passes through it and it becomes more and more see-through.
+Shading,art,1,the process within fine traditional art where shadows and highlights are painted to show the reflection of light and the shadows it casts.
+Thumbnail,art,1,small quick and rough sketches of the layout of an art piece typically very small and made in seconds.
+Storyboarding,art,1,a series of thumbnails in succession of each other to map out how an animation will look and be laid out. It is not uncommon to see tv shows make sketches on post-its and map them out on a whiteboard.
+Calligraphy,art,1,the art form of handwriting where writing is made elegantly with precision.
+Macrame,art,1,a yarn or rope art form that involves knotting to create designs and textiles.
+Soundscape,art,1,the full combination of sounds within an environment. Typically used in sound design to describe the entire composition of what sounds are used and needed within a scene.
+Rigging,art,2,a 3D computer animation step that involves taking sculpted designs and adding joints and bones to them in order to move said designs and animate within a digital space.
+Keyframe,art,2,a single image within animation that determines the start/stop of a specific action.
+Glazing,art,2,a step within the creation of ceramics pottery that involves taking sculpted clay and dipping it into a Liquid Glass glaze letting it dry and then heating it up in a kiln to melt the glass and create a waterproof seal.
+Kiln,art,2,a large oven or furnace used for heating ceramic pottery bricks or clay. Typically reaches extreme temperatures to be able to melt glass and glazes.
+Grey washing,art,2,a method used in tattooing where black tattoo ink is diluted and then used on skin creating the effect of lower opacity and forming soft gradients.
+Rendering,art,2,a homophone in the art world: in traditional fine art such as painting it is the term used when small details are being now added to the piece after the biggest shapes have been blocked out. In animation or film rendering is the step a computer takes to process and enhance the data from a finished project.
+Printmaking,art,2,an large art form that involves the process of creating an initial image on a raised surface or digging into a surface to create an image then rolling ink onto the surface and pressing it against another to imprint the image onto the other object.
+Blocking,art,2,the beginning process of fine art where typically only big geometrical shapes and colors are placed to get a sense of what colors to use and the layout of the art piece.
+Motion Capture,art,2,the process in animation where actors are put in suits with tracking devices and then their movement is tracked onto a character digitally.
+Flash Designs,art,2,a selection of pre-drawn tattoos typically curated by the tattoo artist themself as a means of creating simple and readily available designs to choose from.
+Baroque,art,3,art style from 17th century featuring heavy ornamentation.
+Degas,art,3,french Impressionist artist famous for his pastel drawings and oil paintings bronze sculptures prints and drawings which often featured the subject of dance.
+Giverny,art,3,the gardens and home of famous painter Claude Monet.
+Renaissance,art,3,"Rebirth" of European culture marking the transition from the Middle Ages to modernity through a revival of Classical art learning and humanism.
+Hellenistic,art,3,relating to Greek history language and culture from the death of Alexander the Great to the defeat of Cleopatra and Mark Antony by Octavian in 31 BC.
+Impressionism,art,3,a French art movement that focused less on the technical realism of paintings and more on color theory and the effects of light in paintings. Classified for its use of thick and short brushstrokes.
+Cybersigilism,art,3,a modern tattoo art style involving fine lines and mixing tribal elements and mystical shapes often with horror or metal band inspirations.
+Art Deco,art,3,a glamorous design era and style from France with brash designs and bold shapes and colors leaning deeply into geometric shapes with complementary colors and metallics. Often made with luxurious materials to signify wealth luxury and dignity.
+Contemporary,art,3,art created from the 1970s to now signifying a massive increase in media exposure and literacy as well as the mixture of all types of art. There is no common idea or concept to any of the art but instead celebrates the artists and their differences.
+Brutalism,art,3,an architectural style that became popular in modern times for its use of sharp edges and concrete shapes and minimalist design. Typically also made with cheaper but strong materials.
+Bit,computer science,1,most basic unit of information in computing.
+Byte,computer science,1,unit of digital information comprising of 8 bits.
+Binary,computer science,1,base-2 numerical system which is the fundamental language of computers.
+Hexadecimal,computer science,1,base-16 numerical system commonly used to represent long binary numbers.
+Octal,computer science,1,base-8 numerical system precursor of hexadecimal that was used to simplify binary.
+Decimal,computer science,1,base-10 numerical system widely used by humans on a daily-basis.
+Integer,computer science,1,data type that can contain any whole number.
+Float,computer science,1,data type that can contain any real numbers.
+Boolean,computer science,1,data type that only has two possible values true or false.
+Character,computer science,1,data type that is a  representation of a natural language character (including letter numeral and punctuation) whitespace (space or tab) or a control character (controls computer hardware that consumes character-based data).
+String,computer science,2,data type that is an array of multiple characters in a sequence.
+List,computer science,2,data structure that uses number indexes and can be modified.
+Touple,computer science,2,data structure that once created cannot be changed.
+Dictionary,computer science,2,data structure that uses "keys" instead of indexe.
+Network,computer science,2,the conection between 2 or more computer devices.
+Node,computer science,2,used to refer to any device in a network.
+Internet,computer science,2,huge network of computers that span the whole world.
+Bluetooth,computer science,2,wireless communication that enables different devices to connect. In a small private network between two devices.
+Loop,computer science,2,logic in coding that allows a program to run the same code multiple times.
+Function,computer science,2,section of code that can be called on by a program multiple times.
+HTML,computer science,3,standard markup language for documents designed to be displayed in a web browser.
+Wide Area Network,computer science,3,a large network that includes parts of states multiple states countries.
+Local Area Network,computer science,3,networks that are small in geographic size. This can be a room or building.
+Metropolitan Area Network,computer science,3,networks that serve an area of approximately the size of a typical city.
+Personal Area Network,computer science,3,a network of a few meters typically just a few components.
+Protocol,computer science,3,set of rules that have been agreed so that all devices on a network work in the same way and can understand each other.
+IP Adress,computer science,3,a unique string of numbers that identifies each computer connected to a network using the internet protocol.
+Domain Name System,computer science,3,the mechanism by which Internet software translates domain names to attributes such as addresses.
+Uniform Resource Locator,computer science,3,address of a specific resource on the Internet much like a postal address directs you to a particular location in the real world.
+Baud Rate,computer science,3,the number of signal units (or symbols) transmitted per second in a communication channel.

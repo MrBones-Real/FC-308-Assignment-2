@@ -117,5 +117,17 @@ def logIn(users):
             return currentUser
         else:
             print("\nWrong password :(\n")
+
+#This function prints a menu
+def printMenu(menu):
+    i = 0
+    for item in menu:
+        if (i == 0):
+            print(item)
+        else:
+            print(f"{i}) {item}")
+            
+        i += 1
+    print()
             
 main()
