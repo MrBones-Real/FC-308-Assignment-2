@@ -238,13 +238,14 @@ def playWordGuess(subject, level):
             break
     #Game execution
     displayedWord = []
-    for i in len(wordToGuess["word"]):
-        displayedWord.append("_")
+    for i in range(len(wordToGuess["word"])):
+        displayedWord.append("_ ")
     hintPenalty = 0
     mistakes = 0
     isGameOver = False
     while not isGameOver:
-        print(f"\nMistakes left: {4-mistakes}\n")
+        print("\nWord Guess!")
+        print(f"Mistakes left: {4-mistakes}\n")
         print("".join(displayedWord))
         print()
         printMenu(wordGuessMenu)
@@ -257,26 +258,29 @@ def playWordGuess(subject, level):
         elif selection == "2" or selection == "guess":
             #Asking the user for a letter and checking if it's on the selected word
             while True:
-                guess = input("\nGuess a letter: \n")
+                guess = input("\nGuess a letter: ")
+                guess = guess.lower().strip()
                 if not len(guess) == 1 or not guess.isalpha():
                     print("\nThat is not a single letter!\n")
                 else:
                     found = False
-                    for i in len(wordToGuess["word"]):
-                        if guess == wordToGuess["word"][i]:
+                    for i in range(len(wordToGuess["word"])):
+                        if guess == wordToGuess["word"][i].lower():
                             found = True
-                            displayedWord[i] = wordToGuess["word"][i]
+                            displayedWord[i] = wordToGuess["word"][i] + " "
                     break
             if found:
                 print("\nCorrect!\n")
             else:
                 mistakes += 1
                 print("\nIncorrect! Try again\n")
+        else:
+            print("\nThat is not a valid input!\n")
     #ending the game
         if mistakes == 4:
             print("\nToo bad!")
             isGameOver = True
-        elif not "_" in displayedWord:
+        elif not "_ " in displayedWord:
             print("\nCongratulations!")
             isGameOver = True
             
