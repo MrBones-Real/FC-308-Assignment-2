@@ -175,6 +175,7 @@ def playGame(user):
     #initializing menus for the function
     subjectMenu = ["What subject do you want to practice?","Math","Science","History","Art","Computer Science"]
     levelMenu = ["What level do you want to play?","1","2","3"]
+    gameSelectMenu = ["What game do you want to play?", "Word Guess", "Word Match"]
     #Allowing the user to select their subject
     while True:
         print()
@@ -220,7 +221,22 @@ def playGame(user):
         else:
             print("\nThat is not a valid input! >:(\n")
 
-    scoreAchieved = playWordGuess(subject, level)
+    #Allowing the user to choose a game
+    while True:
+        print()
+        printMenu(gameSelectMenu)
+
+        selection = input("Type number or name: ")
+        selection = selection.lower().strip()
+
+        if selection == '1' or selection == 'word guess':
+            scoreAchieved = playWordGuess(subject, level)
+            break
+        elif selection == '2' or selection == 'Word Match':
+            playWordMatch(subject, level)
+            scoreAchieved = 0
+            break
+    
 
     print("\nGame Over!")
     print(f"Your score was: {scoreAchieved}")
@@ -237,12 +253,12 @@ def playWordGuess(subject, level):
         if wordToGuess["subject"] == subject and wordToGuess["level"] == level:
             break
     #Game execution
-    displayedWord = []
-    for i in range(len(wordToGuess["word"])):
-        displayedWord.append("_ ")
     hintPenalty = 0
     mistakes = 0
     isGameOver = False
+    displayedWord = []
+    for i in range(len(wordToGuess["word"])):
+        displayedWord.append("_ ")
     while not isGameOver:
         print("\nWord Guess!")
         print(f"Mistakes left: {4-mistakes}\n")
@@ -288,13 +304,31 @@ def playWordGuess(subject, level):
     score = score + 1000 - (250 * mistakes) - hintPenalty
 
     return score
-"""
+
 def playWordMatch(subject, level):
-    #getting the word list and filtering only the words we need
+    #getting random words and building a list of definitions
     wordList = getWordList()
     filteredWordList = []
+    definitionsToDisplay = ["Definitions:"]
+    #Getting a random word to match
     for word in wordList:
         if word['subject'] == subject and word['level'] == level:
             filteredWordList.append(word)
-"""
+    wordToMatch = random.choice(filteredWordList)
+    definitionsToDisplay.append(wordToMatch["definition"])
+    #Building a list of random definitions
+    for i in range(4):
+        while True:
+            randomWord = random.choice(filteredWordList)
+            if not randomWord["definition"] in definitionsToDisplay:
+                definitionsToDisplay.append(randomWord["definition"])
+                break
+    #Game execution
+    isGameOver = False
+    while not isGameOver:
+        print(f"\nMatch this Word!: {wordToMatch['word']}\n")
+        printMenu(definitionsToDisplay)
+
+        guess = input("\nChoose: ").strip()
+            
 main()
