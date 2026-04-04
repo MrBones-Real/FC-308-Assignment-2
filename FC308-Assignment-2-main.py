@@ -1,22 +1,19 @@
 #FC308 Assignment 2
-
+#importing required libraries
 import csv
+import random
 
 #intializing headers that are going to be used when writing into users.csv
 headers = ["index", "username", "password", "mathLV", "mathHScore",
            "scienceLV","scienceHScore", "historyLV", "historyHScore",
            "artLV","artHScore", "computingLV", "computingHScore"]
-#intializing main menu options
-mainMenu = ["Vocabulary builder","Play Game",
-            "Check Stats","Check Ranking","Reset Progress","Exit"]
-#initializing subject selection menu
-subjectMenu = ["What subject do you want to practice?","Math","Science","History","Art","Computer Science"]
-#initializing level selection menu
-levelMenu = ["What level do you want to play?","1","2","3"]
 
 #(W3Schools, 2026)
 #(Python Documentation, 2026)
 def main():
+    #intializing main menu options
+    mainMenu = ["Vocabulary builder","Play Game",
+                "Check Stats","Check Ranking","Reset Progress","Exit"]
     #getting the user list
     userList = getUserList()
     #handling log-in or sign-up
@@ -175,6 +172,9 @@ def printMenu(menu):
 
 #This function will allow the user to choose a subject, level and game to play
 def playGame(user):
+    #initializing menus for the function
+    subjectMenu = ["What subject do you want to practice?","Math","Science","History","Art","Computer Science"]
+    levelMenu = ["What level do you want to play?","1","2","3"]
     #Allowing the user to select their subject
     while True:
         print()
@@ -220,16 +220,77 @@ def playGame(user):
         else:
             print("\nThat is not a valid input! >:(\n")
 
-    playWordGuess(subject, level)
+    scoreAchieved = playWordGuess(subject, level)
+
+    print("\nGame Over!")
+    print(f"Your score was: {scoreAchieved}")
 #This function plays the word guess game for the user
+#(W3 Schools, 2026)
 def playWordGuess(subject, level):
+    #Initializing menu for the game
+    wordGuessMenu =["What do you want to do?", "Hint", "Guess"]
+    score = 0
+    #Getting a random word from the list and making sure it's from the subject and level selected
+    wordList = getWordList()
+    while True:
+        wordToGuess = random.choice(wordList)
+        if wordToGuess["subject"] == subject and wordToGuess["level"] == level:
+            break
+    #Game execution
+    displayedWord = []
+    for i in len(wordToGuess["word"]):
+        displayedWord.append("_")
+    hintPenalty = 0
+    mistakes = 0
+    isGameOver = False
+    while not isGameOver:
+        print(f"\nMistakes left: {4-mistakes}\n")
+        print("".join(displayedWord))
+        print()
+        printMenu(wordGuessMenu)
+        selection = input("Type number or option: ")
+        selection = selection.lower().strip()
+        #Asking the user if they want a hint or they want to guess
+        if selection == "1" or selection == "hint":
+            print(f"\nHint: {wordToGuess['definition']}\n")
+            hintPenalty += 100
+        elif selection == "2" or selection == "guess":
+            #Asking the user for a letter and checking if it's on the selected word
+            while True:
+                guess = input("\nGuess a letter: \n")
+                if not len(guess) == 1 or not guess.isalpha():
+                    print("\nThat is not a single letter!\n")
+                else:
+                    found = False
+                    for i in len(wordToGuess["word"]):
+                        if guess == wordToGuess["word"][i]:
+                            found = True
+                            displayedWord[i] = wordToGuess["word"][i]
+                    break
+            if found:
+                print("\nCorrect!\n")
+            else:
+                mistakes += 1
+                print("\nIncorrect! Try again\n")
+    #ending the game
+        if mistakes == 4:
+            print("\nToo bad!")
+            isGameOver = True
+        elif not "_" in displayedWord:
+            print("\nCongratulations!")
+            isGameOver = True
+            
+    print(f"The word was: {wordToGuess['word']}\n")
+    score = score + 1000 - (250 * mistakes) - hintPenalty
+
+    return score
+"""
+def playWordMatch(subject, level):
     #getting the word list and filtering only the words we need
     wordList = getWordList()
     filteredWordList = []
     for word in wordList:
         if word['subject'] == subject and word['level'] == level:
             filteredWordList.append(word)
-
-    print(filteredWordList)
-    
+"""
 main()
