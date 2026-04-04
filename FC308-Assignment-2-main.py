@@ -37,10 +37,9 @@ def main():
         print()
         selection = input("What do you want to do?: ")
         selection = selection.lower().strip()
-        print(selection)
         
         if selection == '1' or selection == "play game":
-            playGame()
+            playGame(currentUser)
         elif selection == '2' or selection == "check stats":
             print("\nChecking Stats!\n")
         elif selection == '3' or selection == "check ranking":
@@ -178,10 +177,11 @@ def printMenu(menu):
 def playGame(user):
     #Allowing the user to select their subject
     while True:
+        print()
         printMenu(subjectMenu)
 
         selection = input("Type number or name: ")
-        selection = selection.lower().stripped()
+        selection = selection.lower().strip()
 
         if selection == '1' or selection == "math":
             subject = 'math'
@@ -202,10 +202,11 @@ def playGame(user):
             print("\nThat is not a valid input! >:(\n")
     #Allowing the user to choose their level
     while True:
+        print()
         printMenu(levelMenu)
 
         selection = input("Type number or name: ")
-        selection = selection.lower().stripped()
+        selection = selection.lower().strip()
 
         if selection == '1':
             level = '1'
@@ -216,17 +217,17 @@ def playGame(user):
         elif selection == '3':
             level = '3'
             break
-        else.
+        else:
             print("\nThat is not a valid input! >:(\n")
 
     playWordGuess(subject, level)
 #This function plays the word guess game for the user
 def playWordGuess(subject, level):
+    #getting the word list and filtering only the words we need
     wordList = getWordList()
     filteredWordList = []
-    
     for word in wordList:
-        if word[subject] == subject and word[level] == level:
+        if word['subject'] == subject and word['level'] == level:
             filteredWordList.append(word)
 
     print(filteredWordList)
