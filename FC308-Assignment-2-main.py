@@ -6,27 +6,67 @@ import csv
 headers = ["index", "username", "password", "mathLV", "mathHScore",
            "scienceLV","scienceHScore", "historyLV", "historyHScore",
            "artLV","artHScore", "computingLV", "computingHScore"]
+#intializing main menu options
+mainMenu = ["Vocabulary builder","Play Game",
+            "Check Stats","Check Ranking","Reset Progress","Exit"]
 
 #(W3Schools, 2026)
 #(Python Documentation, 2026)
 def main():
+    #getting the user list
     userList = getUserList()
-    
+    #handling log-in or sign-up
     while True:
         hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
         if (hasAccount == 'yes' or hasAccount == 'y'):
             currentUser = logIn(userList)
             break
-        
         elif (hasAccount == 'no' or hasAccount == 'n'):
             userList, currentUser = signUp(userList)
+            break    
+        else:
+            print("\nThat is not a valid input!")       
+    #main menu
+    while True:
+        print(f"\nWelcome {currentUser['username']}!")
+        printMenu(mainMenu)
+        print()
+        selection = input("What do you want to do?: ")
+        selection = selection.lower().strip()
+        print(selection)
+        
+        if selection == '1' or selection == "play game":
+            print(" \nPlaying Game!\n")
+        elif selection == '2' or selection == "check stats":
+            print("\nChecking Stats!\n")
+        elif selection == '3' or selection == "check ranking":
+            print("\nChecking Ranking!\n")
+        elif selection == '4' or selection == "reset progress":
+            print("\nResetting Progress\n")
+        elif selection == '5' or selection == "exit":
+            print("\nThank you for playing! :)\n")
             break
-            
         else:
             print("\nThat is not a valid input!\n")
 
-    print(f"Welcome {currentUser['username']}!")
-
+#Function that is going to get the wordList for the games
+#(code academy, 2026)
+def getWordList():
+    wordList = []
+    #Trying to open and getting data from words.csv
+    try:
+        with open("words.csv", 'r', newline = '') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                wordList.append(row)
+            return wordList
+    #Warning the user that they don't have the file
+    except FileNotFoundError:
+        print("\nWARNING")
+        print("'words.csv' is not within the local files")
+        print("Please make sure that 'words.csv' is located in the same folder this python document is")
+        exit()
+                
 #Function that is going to get userList from users.csv or create the file if it doesn't exist
 #(Python Documentation, 2026)
 def getUserList():
@@ -129,5 +169,9 @@ def printMenu(menu):
             
         i += 1
     print()
-            
+
+#This function plays the word guess game for the user
+def playWordGuess(subject, level):
+    
+    
 main()
