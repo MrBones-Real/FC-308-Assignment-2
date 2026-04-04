@@ -172,6 +172,13 @@ def printMenu(menu):
 
 #This function plays the word guess game for the user
 def playWordGuess(subject, level):
+    wordList = getWordList()
+    filteredWordList = []
     
+    for word in wordList:
+        if word[subject] == subject and word[level] == level:
+            filteredWordList.append(word)
+
+    print(filteredWordList)
     
 main()
