@@ -333,12 +333,78 @@ def playGame(user):
         user[subjectHighScore] = str(scoreTotal)
         print(f"\nYou got a new high score in {subject.capitalize()}!: {scoreTotal}")
     return user
+#This function will show the user their levels and high score in the different subjects
+def checkStats(user):
+    print("\nStats!\n")
+    print("Math:")
+    print(f"Level: {user['mathLV']}")
+    print(f"High Score: {user['mathHScore']}")
+    print()
+    print("Science:")
+    print(f"Level: {user['scienceLV']}")
+    print(f"High Score: {user['scienceHScore']}")
+    print()
+    print("History:")
+    print(f"Level: {user['historyLV']}")
+    print(f"High Score: {user['historyHScore']}")
+    print()
+    print("Art:")
+    print(f"Level: {user['artLV']}")
+    print(f"High Score: {user['artHScore']}")
+    print()
+    print("Computer Science:")
+    print(f"Level: {user['computingLV']}")
+    print(f"High Score: {user['computingHScore']}")
+    print()
+
+    input("Press enter to leave: ")
+#This function will be used to sort the users by score achieved
+#(W3Schools, 2026)
+def scoreRanking(u):
+    return u["score"]
+#This function will show the user a ranking of the top 5 scores in each subject
+#(W3Schools, 2026)
+def checkRanking(userList):
+    rankingOptions = ["What subject do you want to check?","Math","Science","History","Art","Computer Science"]
+    printMenu(rankingOptions)
+    print()
+    while True:
+        selection = input("Type number or name: ").strip().lower()
+        if selection == '1' or selection == 'math':
+            subject = 'math'
+            break
+        elif selection == '2' or selection == 'science':
+            subject = 'science'
+            break
+        elif selection == '3' or selection == 'history':
+            subject = 'history'
+            break
+        elif selection == '4' or selection == 'art':
+            subject = 'art'
+            break
+        elif selection == '5' or selection == 'computer science':
+            subject = 'computing'
+            break
+        else:
+            print("\nThat is not a valid input!\n")
+
+    scoreList = []
+    for user in userList:
+        userData = {"name":user["username"], "score":int(user[subject+'HScore'])}
+        scoreList.append(userData)
+    scoreList.sort(reverse = True, key = scoreRanking)
+    
+    print(f"{subject.capitalize()} Ranking!:")
+    for i in range(5):
+        print(f"{i}) {scoreList[i]['name']} - {scoreList[i]['score']}")
+
+    input("Press enter to continue: ")
 #(W3Schools, 2026)
 #(Python Documentation, 2026)
 def main():
     #intializing main menu options
     mainMenu = ["Vocabulary builder","Play Game",
-                "Check Stats","Check Ranking","Reset Progress","Exit"]
+                "Check Stats","Check Ranking","Exit"]
     #getting the user list
     userList = getUserList()
     #handling log-in or sign-up
@@ -364,12 +430,10 @@ def main():
             userList[int(currentUser['index'])] = currentUser
             updateUserList(userList)
         elif selection == '2' or selection == "check stats":
-            print("\nChecking Stats!\n")
+            checkStats(currentUser)
         elif selection == '3' or selection == "check ranking":
-            print("\nChecking Ranking!\n")
-        elif selection == '4' or selection == "reset progress":
-            print("\nResetting Progress\n")
-        elif selection == '5' or selection == "exit":
+            checkRanking(userList)
+        elif selection == '4' or selection == "exit":
             print("\nThank you for playing! :)\n")
             break
         else:
