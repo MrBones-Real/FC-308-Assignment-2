@@ -2,12 +2,10 @@
 #importing required libraries
 import csv
 import random
-
 #intializing headers that are going to be used when writing into users.csv
 headers = ["index", "username", "password", "mathLV", "mathHScore",
            "scienceLV","scienceHScore", "historyLV", "historyHScore",
            "artLV","artHScore", "computingLV", "computingHScore"]
-
 #(W3Schools, 2026)
 #(Python Documentation, 2026)
 def main():
@@ -35,7 +33,9 @@ def main():
         selection = input("What do you want to do?: ").lower().strip()
         
         if selection == '1' or selection == "play game":
-            playGame(currentUser)
+            currentUser = playGame(currentUser)
+            userList[int(currentUser['index'])] = currentUser
+            updateUserList(userList)
         elif selection == '2' or selection == "check stats":
             print("\nChecking Stats!\n")
         elif selection == '3' or selection == "check ranking":
@@ -47,7 +47,6 @@ def main():
             break
         else:
             print("\nThat is not a valid input!\n")
-
 #Function that is going to get the wordList for the games
 #(code academy, 2026)
 def getWordList():
@@ -64,8 +63,7 @@ def getWordList():
         print("\nWARNING")
         print("'words.csv' is not within the local files")
         print("Please make sure that 'words.csv' is located in the same folder this python document is")
-        exit()
-                
+        exit()             
 #Function that is going to get userList from users.csv or create the file if it doesn't exist
 #(Python Documentation, 2026)
 def getUserList():
@@ -169,70 +167,6 @@ def printMenu(menu):
         i += 1
     print()
 
-#This function will allow the user to choose a subject, level and game to play
-def playGame(user):
-    #initializing menus for the function
-    subjectMenu = ["What subject do you want to practice?","Math","Science","History","Art","Computer Science"]
-    levelMenu = ["What level do you want to play?","1","2","3"]
-    gameSelectMenu = ["What game do you want to play?", "Word Guess", "Word Match"]
-    #Allowing the user to select their subject
-    while True:
-        print()
-        printMenu(subjectMenu)
-        selection = input("Type number or name: ").lower().strip()
-
-        if selection == '1' or selection == "math":
-            subject = 'math'
-            break
-        elif selection == '2' or selection == "science":
-            subject = 'science'
-            break
-        elif selection == '3' or selection == "history":
-            subject = 'history'
-            break
-        elif selection == '4' or selection == "art":
-            subject = 'art'
-            break
-        elif selection == '5' or selection == "computer science":
-            subject = 'computer science'
-            break
-        else:
-            print("\nThat is not a valid input! >:(\n")
-    #Allowing the user to choose their level
-    while True:
-        print()
-        printMenu(levelMenu)
-        selection = input("Type number or name: ").lower().strip()
-
-        if selection == '1':
-            level = '1'
-            break
-        elif selection == '2':
-            level = '2'
-            break
-        elif selection == '3':
-            level = '3'
-            break
-        else:
-            print("\nThat is not a valid input! >:(\n")
-
-    #Allowing the user to choose a game
-    while True:
-        print()
-        printMenu(gameSelectMenu)
-
-        selection = input("Type number or name: ").lower().strip()
-
-        if selection == '1' or selection == 'word guess':
-            scoreAchieved = playWordGuess(subject, level)
-            break
-        elif selection == '2' or selection == 'Word Match':
-            scoreAchieved = playWordMatch(subject, level)
-            break
-    
-
-    print("\nGame Over!")
-    print(f"Your score was: {scoreAchieved}")
 #This function plays the word guess game for the user
 #(W3 Schools, 2026)
 def playWordGuess(subject, level):
@@ -261,14 +195,14 @@ def playWordGuess(subject, level):
         selection = input("Type number or option: ").lower().strip()
         #Asking the user if they want a hint or they want to guess
         if selection == "1" or selection == "hint":
-            print(f"\nHint: {wordToGuess['definition']}\n")
+            print(f"\nHint: {wordToGuess['definition'].capitalize()}\n")
             hintPenalty += 100
         elif selection == "2" or selection == "guess":
             #Asking the user for a letter and checking if it's on the selected word
             while True:
                 guess = input("\nGuess a letter: ").lower().strip()
                 if not len(guess) == 1 or not guess.isalpha():
-                    print("\nThat is not a single letter!\n")
+                    print("\nThat is not a single letter!")
                 else:
                     found = False
                     for i in range(len(wordToGuess["word"])):
@@ -277,12 +211,12 @@ def playWordGuess(subject, level):
                             displayedWord[i] = wordToGuess["word"][i] + " "
                     break
             if found:
-                print("\nCorrect!\n")
+                print("\nCorrect!")
             else:
                 mistakes += 1
-                print("\nIncorrect! Try again\n")
+                print("\nIncorrect! Try again)
         else:
-            print("\nThat is not a valid input!\n")
+            print("\nThat is not a valid input!")
     #ending the game
         if mistakes == 4:
             print("\nToo bad!")
@@ -295,7 +229,6 @@ def playWordGuess(subject, level):
     score = score + 1000 - (250 * mistakes) - hintPenalty
 
     return score
-
 #(W3 Schools, 2026)
 def playWordMatch(subject, level):
     #getting random words and building a list of definitions
@@ -346,5 +279,124 @@ def playWordMatch(subject, level):
     #Ending the game
     score = 1000 - (250 * mistakes)
     return score
+#This function will check if the user is able to level up
+def canUserLeverUp(user, subjectLevel, gameLevel, score):
+    if user[subjectLevel] == gameLevel and score > 4000 and not user[subjectLevel] > 3:
+        return True
+    else:
+        return False
+#This function will allow the user to choose a subject, level and game to play
+def playGame(user):
+    #initializing menus for the function
+    subjectMenu = ["What subject do you want to practice?","Math","Science","History","Art","Computer Science"]
+    levelMenu = ["What level do you want to play?","1","2","3"]
+    gameSelectMenu = ["What game do you want to play?", "Word Guess", "Word Match"]
+    #Allowing the user to select their subject
+    while True:
+        print()
+        printMenu(subjectMenu)
+        selection = input("Type number or name: ").lower().strip()
 
+        if selection == '1' or selection == "math":
+            subject = 'math'
+            subjectLevel = "mathLV"
+            subjectHighScore = "mathHScore"
+            break
+        elif selection == '2' or selection == "science":
+            subject = 'science'
+            subjectLevel = "scienceLV"
+            subjectHighScore = "scienceHScore"
+            break
+        elif selection == '3' or selection == "history":
+            subject = 'history'
+            subjectLevel = "historyLV"
+            subjectHighScore = "historyHScore"
+            break
+        elif selection == '4' or selection == "art":
+            subject = 'art'
+            subjectLevel = "artLV"
+            subjectHighScore = "artHScore"
+            break
+        elif selection == '5' or selection == "computer science":
+            subject = 'computer science'
+            subjectLevel = "computingLV"
+            subjectHighScore = "computingHScore"
+            break
+        else:
+            print("\nThat is not a valid input! >:(\n")
+    #Allowing the user to choose their level
+    while True:
+        print()
+        printMenu(levelMenu)
+        selection = input("Type number or name: ").lower().strip()
+        if not len(selection) == 1 and not selection.isdigit():
+            print("\nThat is not a valid input! >:(\n")
+        elif not int(selection) in range(0, int(user[subjectLevel]) + 1):
+            print("\nThat number is not valid! >:(\n")
+        else:
+            level = int(selection)
+            break
+"""
+        if selection == '1':
+            level = '1'
+            break
+        elif selection == '2':
+            level = '2'
+            break
+        elif selection == '3':
+            level = '3'
+            break
+        else:
+            print("\nThat is not a valid input! >:(\n")
+"""
+    #Allowing the user to choose a game
+    games = {1:playWordGuess, 2:playWordMatch}
+    while True:
+        print()
+        printMenu(gameSelectMenu)
+
+        selection = input("Type number or name: ").lower().strip()
+        if selection == '1' or selection == 'word guess':
+            selection = 1
+            break
+        elif selection == '2' or selection == 'word match':
+            selection = 2
+            break
+        else:
+            print("\nThat is not a valid input!\n")
+    #Playing the game
+    scoreAchieved = 0
+    for i in range(5):
+        print("\nNext Game!")
+        scoreAchieved += games[selection](subject, level)
+    #Game ends and level and high score are checked
+    print("\nGame Over!")
+    print(f"Your score was: {scoreAchieved}")    
+    if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
+        user[subjectLevel] = str(int(user[subjectLevel]) + 1)
+        print("\nCongratulations! you leveled up!")
+    if scoreAchieved > user[subjectHighScore]:
+        user[subjectHighScore] = str(scoreAchieved)
+        print(f"\nYou got a new high score in {subject.capitalize()}!: {scoreAchieved}")
+    return user
+"""
+        if selection == '1' or selection == 'word guess':
+            scoreAchieved = 0
+            for i in range(5):
+                print("\nNext Game!")
+                scoreAchieved += playWordGuess(subject, level)
+            if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
+                user[subjectLevel] = int(user[subjectLevel]) + 1
+                print("\nCongratulations! you leveled up!\n")
+            break
+        elif selection == '2' or selection == 'word Match':
+            scoreAchieved = 0
+            for i in range(5):
+                print("\nNext Game!")
+                scoreAchieved += playWordMatch(subject, level)
+            if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
+                user[subjectLevel] = int(user[subjectLevel]) + 1
+                print("\nCongratulations! you leveled up!\n")
+            break
+"""
 main()
