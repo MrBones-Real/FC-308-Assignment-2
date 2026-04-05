@@ -245,7 +245,7 @@ def playWordMatch(subject, level):
     for i in range(4):
         while True:
             randomWord = random.choice(filteredWordList)
-            if not randomWord["definition"] in definitionsToDisplay:
+            if not randomWord["definition"].capitalize() in definitionsToDisplay:
                 definitionsToDisplay.append(randomWord["definition"].capitalize())
                 break
     random.shuffle(definitionsToDisplay)
@@ -266,10 +266,10 @@ def playWordMatch(subject, level):
                 print("\nThat is not a valid input!\n")
         #Checking the users guess
         if definitionsToDisplay[int(guess)] == wordToMatch["definition"].capitalize():
-            print("\nCongratulations That's correct!\n")
+            print("\nCongratulations That's correct!")
             isGameOver = True
         else:
-            print("\nThat's Incorrect!\n")
+            print("\nThat's Incorrect!")
             mistakes += 1
             if mistakes == 4:
                 print("\nToo Bad!\n")
@@ -280,8 +280,8 @@ def playWordMatch(subject, level):
     score = 1000 - (250 * mistakes)
     return score
 #This function will check if the user is able to level up
-def canUserLeverUp(user, subjectLevel, gameLevel, score):
-    if user[subjectLevel] == gameLevel and score > 4000 and not user[subjectLevel] > 3:
+def canUserLevelUp(user, subjectLevel, gameLevel, score):
+    if user[subjectLevel] == gameLevel and score > 4000 and not int(user[subjectLevel]) >= 3:
         return True
     else:
         return False
@@ -332,9 +332,9 @@ def playGame(user):
         if not len(selection) == 1 and not selection.isdigit():
             print("\nThat is not a valid input! >:(\n")
         elif not int(selection) in range(1, int(user[subjectLevel]) + 1):
-            print("\nThat number is not valid! >:(\n")
+            print("\nThat number is not valid or you haven't unlocked this level yet!\n")
         else:
-            level = int(selection)
+            level = selection
             break
     #Allowing the user to choose a game
     games = {1:playWordGuess, 2:playWordMatch}
@@ -362,7 +362,7 @@ def playGame(user):
     if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
         user[subjectLevel] = str(int(user[subjectLevel]) + 1)
         print("\nCongratulations! you leveled up!")
-    if scoreAchieved > user[subjectHighScore]:
+    if scoreAchieved > int(user[subjectHighScore]):
         user[subjectHighScore] = str(scoreAchieved)
         print(f"\nYou got a new high score in {subject.capitalize()}!: {scoreAchieved}")
     return user
