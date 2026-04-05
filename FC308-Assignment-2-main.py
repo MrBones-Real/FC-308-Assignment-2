@@ -6,47 +6,6 @@ import random
 headers = ["index", "username", "password", "mathLV", "mathHScore",
            "scienceLV","scienceHScore", "historyLV", "historyHScore",
            "artLV","artHScore", "computingLV", "computingHScore"]
-#(W3Schools, 2026)
-#(Python Documentation, 2026)
-def main():
-    #intializing main menu options
-    mainMenu = ["Vocabulary builder","Play Game",
-                "Check Stats","Check Ranking","Reset Progress","Exit"]
-    #getting the user list
-    userList = getUserList()
-    #handling log-in or sign-up
-    while True:
-        hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
-        if (hasAccount == 'yes' or hasAccount == 'y'):
-            currentUser = logIn(userList)
-            break
-        elif (hasAccount == 'no' or hasAccount == 'n'):
-            userList, currentUser = signUp(userList)
-            break    
-        else:
-            print("\nThat is not a valid input!")       
-    #main menu
-    while True:
-        print(f"\nWelcome {currentUser['username']}!")
-        printMenu(mainMenu)
-        print()
-        selection = input("What do you want to do?: ").lower().strip()
-        
-        if selection == '1' or selection == "play game":
-            currentUser = playGame(currentUser)
-            userList[int(currentUser['index'])] = currentUser
-            updateUserList(userList)
-        elif selection == '2' or selection == "check stats":
-            print("\nChecking Stats!\n")
-        elif selection == '3' or selection == "check ranking":
-            print("\nChecking Ranking!\n")
-        elif selection == '4' or selection == "reset progress":
-            print("\nResetting Progress\n")
-        elif selection == '5' or selection == "exit":
-            print("\nThank you for playing! :)\n")
-            break
-        else:
-            print("\nThat is not a valid input!\n")
 #Function that is going to get the wordList for the games
 #(code academy, 2026)
 def getWordList():
@@ -183,6 +142,7 @@ def playWordGuess(subject, level):
     mistakes = 0
     score = 0
     isGameOver = False
+    didUserLose = False
     displayedWord = []
     for i in range(len(wordToGuess["word"])):
         displayedWord.append("_ ")
@@ -221,6 +181,7 @@ def playWordGuess(subject, level):
         if mistakes == 4:
             print("\nToo bad!")
             isGameOver = True
+            didUserLose =  True
         elif not "_ " in displayedWord:
             print("\nCongratulations!")
             isGameOver = True
@@ -228,7 +189,7 @@ def playWordGuess(subject, level):
     print(f"The word was: {wordToGuess['word']}\n")
     score = score + 1000 - (250 * mistakes) - hintPenalty
 
-    return score
+    return score, didUserLose
 #(W3 Schools, 2026)
 def playWordMatch(subject, level):
     #getting random words and building a list of definitions
@@ -253,6 +214,7 @@ def playWordMatch(subject, level):
     #Game execution
     isGameOver = False
     mistakes = 0
+    didUserLose = False
     while not isGameOver:
         print(f"\nMatch this Word!: {wordToMatch['word']}")
         print(f"Mistakes left: {4-mistakes}")
@@ -274,11 +236,12 @@ def playWordMatch(subject, level):
             if mistakes == 4:
                 print("\nToo Bad!\n")
                 isGameOver = True
+                didUserLose = True
             else:
                 print("Try Again!\n")
     #Ending the game
     score = 1000 - (250 * mistakes)
-    return score
+    return score, didUserLose
 #This function will check if the user is able to level up
 def canUserLevelUp(user, subjectLevel, gameLevel, score):
     if user[subjectLevel] == gameLevel and score > 4000 and not int(user[subjectLevel]) >= 3:
@@ -352,38 +315,63 @@ def playGame(user):
         else:
             print("\nThat is not a valid input!\n")
     #Playing the game
-    scoreAchieved = 0
-    for i in range(5):
-        print("\nNext Game!")
-        scoreAchieved += games[selection](subject, level)
+    lives = 3
+    scoreTotal = 0
+    while lives > 0:
+        print(f"\nLives Remaining: {lives}")
+        print("Next Game!")
+        scoreAchieved, didUserLose = games[selection](subject, level)
+        scoreTotal += scoreAchieved
+        if didUserLose: lives -= 1
     #Game ends and level and high score are checked
     print("\nGame Over!")
-    print(f"Your score was: {scoreAchieved}")    
-    if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
+    print(f"Your score was: {scoreTotal}")    
+    if canUserLevelUp(user, subjectLevel, level, scoreTotal):
         user[subjectLevel] = str(int(user[subjectLevel]) + 1)
         print("\nCongratulations! you leveled up!")
-    if scoreAchieved > int(user[subjectHighScore]):
-        user[subjectHighScore] = str(scoreAchieved)
-        print(f"\nYou got a new high score in {subject.capitalize()}!: {scoreAchieved}")
+    if scoreTotal > int(user[subjectHighScore]):
+        user[subjectHighScore] = str(scoreTotal)
+        print(f"\nYou got a new high score in {subject.capitalize()}!: {scoreTotal}")
     return user
-"""
-        if selection == '1' or selection == 'word guess':
-            scoreAchieved = 0
-            for i in range(5):
-                print("\nNext Game!")
-                scoreAchieved += playWordGuess(subject, level)
-            if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
-                user[subjectLevel] = int(user[subjectLevel]) + 1
-                print("\nCongratulations! you leveled up!\n")
+#(W3Schools, 2026)
+#(Python Documentation, 2026)
+def main():
+    #intializing main menu options
+    mainMenu = ["Vocabulary builder","Play Game",
+                "Check Stats","Check Ranking","Reset Progress","Exit"]
+    #getting the user list
+    userList = getUserList()
+    #handling log-in or sign-up
+    while True:
+        hasAccount = input("Do you already have an account? type yes(y) or no(n): ").strip().lower()
+        if (hasAccount == 'yes' or hasAccount == 'y'):
+            currentUser = logIn(userList)
             break
-        elif selection == '2' or selection == 'word Match':
-            scoreAchieved = 0
-            for i in range(5):
-                print("\nNext Game!")
-                scoreAchieved += playWordMatch(subject, level)
-            if canUserLevelUp(user, subjectLevel, level, scoreAchieved):
-                user[subjectLevel] = int(user[subjectLevel]) + 1
-                print("\nCongratulations! you leveled up!\n")
+        elif (hasAccount == 'no' or hasAccount == 'n'):
+            userList, currentUser = signUp(userList)
+            break    
+        else:
+            print("\nThat is not a valid input!")       
+    #main menu
+    while True:
+        print(f"\nWelcome {currentUser['username']}!")
+        printMenu(mainMenu)
+        print()
+        selection = input("What do you want to do?: ").lower().strip()
+        
+        if selection == '1' or selection == "play game":
+            currentUser = playGame(currentUser)
+            userList[int(currentUser['index'])] = currentUser
+            updateUserList(userList)
+        elif selection == '2' or selection == "check stats":
+            print("\nChecking Stats!\n")
+        elif selection == '3' or selection == "check ranking":
+            print("\nChecking Ranking!\n")
+        elif selection == '4' or selection == "reset progress":
+            print("\nResetting Progress\n")
+        elif selection == '5' or selection == "exit":
+            print("\nThank you for playing! :)\n")
             break
-"""
+        else:
+            print("\nThat is not a valid input!\n")
 main()
