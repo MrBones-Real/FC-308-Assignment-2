@@ -396,7 +396,7 @@ def checkRanking(userList):
     
     print(f"{subject.capitalize()} Ranking!:")
     for i in range(5):
-        print(f"{i}) {scoreList[i]['name']} - {scoreList[i]['score']}")
+        print(f"{i+1}) {scoreList[i]['name']} - {scoreList[i]['score']}")
 
     input("Press enter to continue: ")
 #(W3Schools, 2026)
