@@ -296,30 +296,33 @@ def playWordGuess(subject, level):
 
     return score
 
+#(W3 Schools, 2026)
 def playWordMatch(subject, level):
     #getting random words and building a list of definitions
     wordList = getWordList()
     filteredWordList = []
-    definitionsToDisplay = ["Definitions:"]
+    definitionsToDisplay = []
     #Getting a random word to match
     for word in wordList:
         if word['subject'] == subject and word['level'] == level:
             filteredWordList.append(word)
     wordToMatch = random.choice(filteredWordList)
-    definitionsToDisplay.append(wordToMatch["definition"])
+    definitionsToDisplay.append(wordToMatch["definition"].capitalize())
     #Building a list of random definitions
     for i in range(4):
         while True:
             randomWord = random.choice(filteredWordList)
             if not randomWord["definition"] in definitionsToDisplay:
-                definitionsToDisplay.append(randomWord["definition"])
+                definitionsToDisplay.append(randomWord["definition"].capitalize())
                 break
-    definitionsToDisplay = random.shuffle(definitionsToDisplay)
+    random.shuffle(definitionsToDisplay)
+    definitionsToDisplay.insert(0, "Definitions:\n")
     #Game execution
     isGameOver = False
+    mistakes = 0
     while not isGameOver:
-        mistakes = 0
-        print(f"\nMatch this Word!: {wordToMatch['word']}\n")
+        print(f"\nMatch this Word!: {wordToMatch['word']}")
+        print(f"Mistakes left: {4-mistakes}")
         printMenu(definitionsToDisplay)
         #Making sure the user's input is a valid input
         while True:
@@ -329,7 +332,7 @@ def playWordMatch(subject, level):
             else:
                 print("\nThat is not a valid input!\n")
         #Checking the users guess
-        if definitionsToDisplay[guess] == wordToMatch["definition"]:
+        if definitionsToDisplay[int(guess)] == wordToMatch["definition"].capitalize():
             print("\nCongratulations That's correct!\n")
             isGameOver = True
         else:
@@ -340,7 +343,8 @@ def playWordMatch(subject, level):
                 isGameOver = True
             else:
                 print("Try Again!\n")
-    score = 1000 + (250 * mistakes)
+    #Ending the game
+    score = 1000 - (250 * mistakes)
     return score
 
 main()
