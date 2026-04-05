@@ -214,7 +214,7 @@ def playWordGuess(subject, level):
                 print("\nCorrect!")
             else:
                 mistakes += 1
-                print("\nIncorrect! Try again)
+                print("\nIncorrect! Try again")
         else:
             print("\nThat is not a valid input!")
     #ending the game
@@ -331,24 +331,11 @@ def playGame(user):
         selection = input("Type number or name: ").lower().strip()
         if not len(selection) == 1 and not selection.isdigit():
             print("\nThat is not a valid input! >:(\n")
-        elif not int(selection) in range(0, int(user[subjectLevel]) + 1):
+        elif not int(selection) in range(1, int(user[subjectLevel]) + 1):
             print("\nThat number is not valid! >:(\n")
         else:
             level = int(selection)
             break
-"""
-        if selection == '1':
-            level = '1'
-            break
-        elif selection == '2':
-            level = '2'
-            break
-        elif selection == '3':
-            level = '3'
-            break
-        else:
-            print("\nThat is not a valid input! >:(\n")
-"""
     #Allowing the user to choose a game
     games = {1:playWordGuess, 2:playWordMatch}
     while True:
