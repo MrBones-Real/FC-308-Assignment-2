@@ -32,8 +32,7 @@ def main():
         print(f"\nWelcome {currentUser['username']}!")
         printMenu(mainMenu)
         print()
-        selection = input("What do you want to do?: ")
-        selection = selection.lower().strip()
+        selection = input("What do you want to do?: ").lower().strip()
         
         if selection == '1' or selection == "play game":
             playGame(currentUser)
@@ -180,9 +179,7 @@ def playGame(user):
     while True:
         print()
         printMenu(subjectMenu)
-
-        selection = input("Type number or name: ")
-        selection = selection.lower().strip()
+        selection = input("Type number or name: ").lower().strip()
 
         if selection == '1' or selection == "math":
             subject = 'math'
@@ -205,9 +202,7 @@ def playGame(user):
     while True:
         print()
         printMenu(levelMenu)
-
-        selection = input("Type number or name: ")
-        selection = selection.lower().strip()
+        selection = input("Type number or name: ").lower().strip()
 
         if selection == '1':
             level = '1'
@@ -226,15 +221,13 @@ def playGame(user):
         print()
         printMenu(gameSelectMenu)
 
-        selection = input("Type number or name: ")
-        selection = selection.lower().strip()
+        selection = input("Type number or name: ").lower().strip()
 
         if selection == '1' or selection == 'word guess':
             scoreAchieved = playWordGuess(subject, level)
             break
         elif selection == '2' or selection == 'Word Match':
-            playWordMatch(subject, level)
-            scoreAchieved = 0
+            scoreAchieved = playWordMatch(subject, level)
             break
     
 
@@ -245,7 +238,6 @@ def playGame(user):
 def playWordGuess(subject, level):
     #Initializing menu for the game
     wordGuessMenu =["What do you want to do?", "Hint", "Guess"]
-    score = 0
     #Getting a random word from the list and making sure it's from the subject and level selected
     wordList = getWordList()
     while True:
@@ -255,6 +247,7 @@ def playWordGuess(subject, level):
     #Game execution
     hintPenalty = 0
     mistakes = 0
+    score = 0
     isGameOver = False
     displayedWord = []
     for i in range(len(wordToGuess["word"])):
@@ -265,8 +258,7 @@ def playWordGuess(subject, level):
         print("".join(displayedWord))
         print()
         printMenu(wordGuessMenu)
-        selection = input("Type number or option: ")
-        selection = selection.lower().strip()
+        selection = input("Type number or option: ").lower().strip()
         #Asking the user if they want a hint or they want to guess
         if selection == "1" or selection == "hint":
             print(f"\nHint: {wordToGuess['definition']}\n")
@@ -274,8 +266,7 @@ def playWordGuess(subject, level):
         elif selection == "2" or selection == "guess":
             #Asking the user for a letter and checking if it's on the selected word
             while True:
-                guess = input("\nGuess a letter: ")
-                guess = guess.lower().strip()
+                guess = input("\nGuess a letter: ").lower().strip()
                 if not len(guess) == 1 or not guess.isalpha():
                     print("\nThat is not a single letter!\n")
                 else:
@@ -323,12 +314,33 @@ def playWordMatch(subject, level):
             if not randomWord["definition"] in definitionsToDisplay:
                 definitionsToDisplay.append(randomWord["definition"])
                 break
+    definitionsToDisplay = random.shuffle(definitionsToDisplay)
     #Game execution
     isGameOver = False
     while not isGameOver:
+        mistakes = 0
         print(f"\nMatch this Word!: {wordToMatch['word']}\n")
         printMenu(definitionsToDisplay)
+        #Making sure the user's input is a valid input
+        while True:
+            guess = input("\nChoose: ").strip()
+            if guess.isdigit() and len(guess) == 1 and int(guess) in range(1,6):
+                break
+            else:
+                print("\nThat is not a valid input!\n")
+        #Checking the users guess
+        if definitionsToDisplay[guess] == wordToMatch["definition"]:
+            print("\nCongratulations That's correct!\n")
+            isGameOver = True
+        else:
+            print("\nThat's Incorrect!\n")
+            mistakes += 1
+            if mistakes == 4:
+                print("\nToo Bad!\n")
+                isGameOver = True
+            else:
+                print("Try Again!\n")
+    score = 1000 + (250 * mistakes)
+    return score
 
-        guess = input("\nChoose: ").strip()
-            
 main()
